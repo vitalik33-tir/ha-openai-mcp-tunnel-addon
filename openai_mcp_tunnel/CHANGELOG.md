@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.12-3
+
+- Keep `curl` in the runtime image so `bashio` can read app configuration from
+  the Home Assistant Supervisor API.
+- Install the `cloudflared` companion shipped in the verified official OpenAI
+  release archive.
+
 ## 0.0.12-2
 
 - Added exact OpenAI Platform and Home Assistant paths for every configuration

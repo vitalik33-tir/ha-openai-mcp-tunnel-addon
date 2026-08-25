@@ -18,10 +18,12 @@ RUN apk add --no-cache ca-certificates curl unzip \
     && mkdir -p /tmp/tunnel-client /usr/share/licenses/tunnel-client \
     && unzip -q /tmp/tunnel-client.zip -d /tmp/tunnel-client \
     && install -m 0755 /tmp/tunnel-client/tunnel-client /usr/local/bin/tunnel-client \
+    && install -m 0755 /tmp/tunnel-client/cloudflared /usr/local/bin/cloudflared \
+    && install -m 0644 /tmp/tunnel-client/cloudflared-manifest.json /usr/share/licenses/tunnel-client/cloudflared-manifest.json \
     && install -m 0644 /tmp/tunnel-client/LICENSE /usr/share/licenses/tunnel-client/LICENSE \
     && install -m 0644 /tmp/tunnel-client/NOTICE /usr/share/licenses/tunnel-client/NOTICE \
     && rm -rf /tmp/tunnel-client /tmp/tunnel-client.zip \
-    && apk del curl unzip
+    && apk del unzip
 
 COPY run.sh /run.sh
 RUN chmod 0755 /run.sh
