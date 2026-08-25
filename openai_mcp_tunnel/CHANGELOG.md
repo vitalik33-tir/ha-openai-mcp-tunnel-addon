@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.12-5
+
+- Fixed backward compatibility for existing installations that do not have
+  `organization_id` in their saved add-on options.
+- Keep `organization_id` truly optional while exporting it as
+  `CONTROL_PLANE_ORGANIZATION_ID` when configured.
+- Keep `allow_remote_ui` disabled by default and pass `--allow-remote-ui` only
+  when explicitly enabled.
+
 ## 0.0.12-4
 
 - Added optional `organization_id` and pass it to the tunnel client as

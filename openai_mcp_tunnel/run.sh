@@ -4,7 +4,10 @@ set -euo pipefail
 tunnel_id="$(bashio::config 'tunnel_id')"
 api_key="$(bashio::config 'api_key')"
 mcp_server_url="$(bashio::config 'mcp_server_url')"
-organization_id="$(bashio::config 'organization_id')"
+organization_id=""
+if bashio::config.has_value 'organization_id'; then
+    organization_id="$(bashio::config 'organization_id')"
+fi
 allow_remote_ui="$(bashio::config 'allow_remote_ui')"
 startup_wait_timeout="$(bashio::config 'startup_wait_timeout')"
 
