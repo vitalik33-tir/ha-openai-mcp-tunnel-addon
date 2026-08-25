@@ -8,6 +8,12 @@ configuration:
   mcp_server_url:
     name: "Direct Access URL HA-MCP"
     description: "Home Assistant → Настройки → Устройства и службы → HA-MCP Custom Component → HA-MCP Server → Настроить. Скопируйте именно Direct Access URL из двух предложенных URL. Не публикуйте его."
+  organization_id:
+    name: "ID организации"
+    description: "Необязательный ID организации OpenAI. Если задан, передаётся tunnel-client через CONTROL_PLANE_ORGANIZATION_ID."
+  allow_remote_ui:
+    name: "Разрешить удалённый интерфейс"
+    description: "Добавляет tunnel-client флаг --allow-remote-ui. Оставьте выключенным, если удалённый доступ к интерфейсу состояния не нужен."
   startup_wait_timeout:
     name: "Ожидание HA-MCP при запуске, секунд"
     description: "Сколько ждать появления локального MCP-сервера после перезапуска HAOS"

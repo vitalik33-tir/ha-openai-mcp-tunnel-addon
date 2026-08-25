@@ -4,6 +4,8 @@ set -euo pipefail
 tunnel_id="$(bashio::config 'tunnel_id')"
 api_key="$(bashio::config 'api_key')"
 mcp_server_url="$(bashio::config 'mcp_server_url')"
+organization_id="$(bashio::config 'organization_id')"
+allow_remote_ui="$(bashio::config 'allow_remote_ui')"
 startup_wait_timeout="$(bashio::config 'startup_wait_timeout')"
 
 if [[ -z "${tunnel_id}" || -z "${api_key}" || -z "${mcp_server_url}" ]]; then
@@ -12,6 +14,9 @@ if [[ -z "${tunnel_id}" || -z "${api_key}" || -z "${mcp_server_url}" ]]; then
 fi
 
 export CONTROL_PLANE_API_KEY="${api_key}"
+if [[ -n "${organization_id}" ]]; then
+    export CONTROL_PLANE_ORGANIZATION_ID="${organization_id}"
+fi
 export MCP_STARTUP_WAIT_TIMEOUT="${startup_wait_timeout}s"
 export HOME="/tmp/tunnel-client-home"
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -31,11 +36,18 @@ if ! /usr/local/bin/tunnel-client init \
     exit 1
 fi
 
-unset api_key mcp_server_url
+unset api_key mcp_server_url organization_id
 
 bashio::log.info "Starting OpenAI Secure MCP Tunnel"
 bashio::log.info "Status UI: http://<HOME_ASSISTANT_IP>:18080/ui"
 
-exec /usr/local/bin/tunnel-client run \
-    --profile home-assistant \
+run_args=(
+    --profile home-assistant
     --health.listen-addr 0.0.0.0:8080
+)
+
+if bashio::var.true "${allow_remote_ui}"; then
+    run_args+=(--allow-remote-ui)
+fi
+
+exec /usr/local/bin/tunnel-client run "${run_args[@]}"

@@ -1,6 +1,6 @@
 name: "OpenAI MCP Tunnel"
 description: "Runs the official OpenAI tunnel-client for a private Home Assistant MCP server"
-version: "0.0.12-3"
+version: "0.0.12-4"
 slug: "openai_mcp_tunnel"
 url: "https://github.com/vitalik33-tir/ha-openai-mcp-tunnel-addon"
 init: false
@@ -19,9 +19,13 @@ options:
   tunnel_id: null
   api_key: null
   mcp_server_url: null
+  organization_id: null
+  allow_remote_ui: false
   startup_wait_timeout: 120
 schema:
   tunnel_id: "match(^tunnel_[A-Za-z0-9]+$)"
   api_key: password
   mcp_server_url: password
+  organization_id: "str?"
+  allow_remote_ui: bool
   startup_wait_timeout: "int(10,600)"

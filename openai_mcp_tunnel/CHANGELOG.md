@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.12-4
+
+- Added optional `organization_id` and pass it to the tunnel client as
+  `CONTROL_PLANE_ORGANIZATION_ID` when configured.
+- Added `allow_remote_ui`; when enabled, the add-on starts tunnel-client with
+  `--allow-remote-ui`.
+
 ## 0.0.12-3
 
 - Keep `curl` in the runtime image so `bashio` can read app configuration from
