@@ -2,5 +2,5 @@
 
 Runs the official OpenAI `tunnel-client` as a persistent Home Assistant app.
 
-See [DOCS.md](DOCS.md) for installation, configuration, migration, and
+See [DOCS.md](DOCS.md) for installation, configuration, verification, and
 troubleshooting instructions.

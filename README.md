@@ -3,8 +3,8 @@
 A Home Assistant app (formerly called an add-on) that keeps the official
 OpenAI `tunnel-client` running next to a private Home Assistant MCP server.
 
-It is designed for the HA-MCP **Direct Access URL** and an existing OpenAI
-Secure MCP Tunnel. No inbound internet port, public MCP endpoint, privileged
+It connects the HA-MCP **Direct Access URL** to an OpenAI Secure MCP Tunnel.
+No inbound internet port, public MCP endpoint, privileged
 container access, or host networking is required.
 
 ## Supported platform
@@ -22,10 +22,9 @@ container access, or host networking is required.
    `https://github.com/vitalik33-tir/ha-openai-mcp-tunnel-addon`
 
 4. Install **OpenAI MCP Tunnel**.
-5. Configure the existing Tunnel ID, a runtime API key restricted to
+5. Configure a Tunnel ID, a runtime API key restricted to
    `Tunnels: Read + Use`, and the HA-MCP Direct Access URL.
-6. Stop any other `tunnel-client` process using the same Tunnel ID, then start
-   the Home Assistant app.
+6. Start the Home Assistant app.
 
 The local status UI is available on port `18080` by default.
 
@@ -33,13 +32,30 @@ The local status UI is available on port `18080` by default.
 
 1. Добавьте URL репозитория в магазине дополнений Home Assistant.
 2. Установите **OpenAI MCP Tunnel**.
-3. Введите существующий `tunnel_id`, Runtime API-ключ с правами
+3. Введите `tunnel_id`, Runtime API-ключ с правами
    `Tunnels: Read + Use` и секретный **Direct Access URL** из HA-MCP.
-4. Остановите старый `tunnel-client` на другом компьютере.
-5. Запустите дополнение и проверьте интерфейс состояния на порту `18080`.
+4. Запустите дополнение и проверьте интерфейс состояния на порту `18080`.
 
 Секреты не сохраняются в этом репозитории и не должны публиковаться в issues,
 логах или снимках экрана.
+
+### Где взять значения для настройки
+
+| Поле | Источник |
+| --- | --- |
+| `ID туннеля` | [OpenAI Platform → Tunnels](https://platform.openai.com/settings/organization/tunnels): создать или выбрать туннель и скопировать его ID вида `tunnel_...`. |
+| `Runtime API-ключ` | [OpenAI Platform → API keys](https://platform.openai.com/settings/organization/api-keys): создать ключ **Restricted**, разрешив только **Tunnels: Read + Use**. |
+| `Direct Access URL HA-MCP` | Home Assistant → **Настройки → Устройства и службы → HA-MCP Custom Component → HA-MCP Server → Настроить**. Из двух URL выбрать именно **Direct Access URL**. |
+| Ожидание запуска | Оставить `120` секунд. |
+| Сетевой порт | Оставить `18080`. |
+
+Чтобы увидеть **Direct Access URL**, откройте в Home Assistant:
+**Настройки → Устройства и службы → HA-MCP Custom Component → HA-MCP Server →
+Настроить**. Из двух показанных адресов скопируйте **Direct Access URL**, а не
+**Webhook URL**. Этот адрес является секретом.
+
+Подробная пошаговая инструкция находится в
+[`openai_mcp_tunnel/DOCS.md`](openai_mcp_tunnel/DOCS.md).
 
 ## Security model
 

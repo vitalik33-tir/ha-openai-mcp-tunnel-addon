@@ -1,13 +1,13 @@
 configuration:
   tunnel_id:
     name: "ID туннеля"
-    description: "Существующий идентификатор OpenAI вида tunnel_..."
+    description: "OpenAI Platform → Settings → Organization → Tunnels. Создайте или выберите туннель и скопируйте ID вида tunnel_..."
   api_key:
     name: "Runtime API-ключ"
-    description: "Ключ OpenAI только с разрешениями Tunnels: Read и Use"
+    description: "OpenAI Platform → API keys → Create new secret key. Выберите Restricted и оставьте только Tunnels: Read и Use. Ключ показывается один раз."
   mcp_server_url:
     name: "Direct Access URL HA-MCP"
-    description: "Секретный URL из настроек сервера HA-MCP. Не публикуйте его."
+    description: "Home Assistant → Настройки → Устройства и службы → HA-MCP Custom Component → HA-MCP Server → Настроить. Скопируйте именно Direct Access URL из двух предложенных URL. Не публикуйте его."
   startup_wait_timeout:
     name: "Ожидание HA-MCP при запуске, секунд"
     description: "Сколько ждать появления локального MCP-сервера после перезапуска HAOS"

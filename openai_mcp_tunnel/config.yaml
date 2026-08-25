@@ -1,6 +1,6 @@
 name: "OpenAI MCP Tunnel"
 description: "Runs the official OpenAI tunnel-client for a private Home Assistant MCP server"
-version: "0.0.12-1"
+version: "0.0.12-2"
 slug: "openai_mcp_tunnel"
 url: "https://github.com/vitalik33-tir/ha-openai-mcp-tunnel-addon"
 init: false
