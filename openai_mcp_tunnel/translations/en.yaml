@@ -1,0 +1,15 @@
+configuration:
+  tunnel_id:
+    name: "Tunnel ID"
+    description: "Existing OpenAI identifier in the form tunnel_..."
+  api_key:
+    name: "Runtime API key"
+    description: "OpenAI key restricted to Tunnels: Read and Use"
+  mcp_server_url:
+    name: "HA-MCP Direct Access URL"
+    description: "Secret URL from the HA-MCP server settings. Do not publish it."
+  startup_wait_timeout:
+    name: "HA-MCP startup wait, seconds"
+    description: "How long to wait for the local MCP server after HAOS restarts"
+network:
+  8080/tcp: "Local tunnel-client status interface"

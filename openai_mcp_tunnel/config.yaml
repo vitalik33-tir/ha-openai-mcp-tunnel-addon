@@ -1,0 +1,27 @@
+name: "OpenAI MCP Tunnel"
+description: "Runs the official OpenAI tunnel-client for a private Home Assistant MCP server"
+version: "0.0.12-1"
+slug: "openai_mcp_tunnel"
+url: "https://github.com/vitalik33-tir/ha-openai-mcp-tunnel-addon"
+init: false
+startup: application
+boot: auto
+stage: experimental
+arch:
+  - amd64
+ports:
+  "8080/tcp": 18080
+ports_description:
+  "8080/tcp": "Local tunnel-client status interface"
+webui: "http://[HOST]:[PORT:8080]/ui"
+watchdog: "http://[HOST]:[PORT:8080]/healthz"
+options:
+  tunnel_id: null
+  api_key: null
+  mcp_server_url: null
+  startup_wait_timeout: 120
+schema:
+  tunnel_id: "match(^tunnel_[A-Za-z0-9]+$)"
+  api_key: password
+  mcp_server_url: password
+  startup_wait_timeout: "int(10,600)"
